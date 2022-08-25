@@ -26,6 +26,8 @@ const choices = {
   spock: { name: "Spock", defeats: ["scissors", "rock"] },
 };
 
+let computerChoice = "";
+
 // RESET ALL "selected" ICONS
 function resetSelected() {
   allGameIcons.forEach((icon) => {
@@ -33,9 +35,60 @@ function resetSelected() {
   });
 }
 
+// RANDOM COMPUTER CHOICE
+function computerRandomChoice() {
+  const computerChoiceNumber = Math.random();
+  if (computerChoiceNumber < 0.2) {
+    computerChoice = "rock";
+  } else if (computerChoiceNumber <= 0.4) {
+    computerChoice = "paper";
+  } else if (computerChoiceNumber <= 0.6) {
+    computerChoice = "scissors";
+  } else if (computerChoiceNumber <= 0.8) {
+    computerChoice = "lizard";
+  } else {
+    computerChoice = "spock";
+  }
+}
+
+// ADD "selected" STYLING & computerChoice
+function displayComputerChoice() {
+  switch (computerChoice) {
+    case "rock":
+      computerRock.classList.add("selected");
+      computerChoiceEl.textContent = " --- Rock";
+      break;
+    case "paper":
+      computerPaper.classList.add("selected");
+      computerChoiceEl.textContent = " --- Paper";
+      break;
+    case "scissors":
+      computerScissors.classList.add("selected");
+      computerChoiceEl.textContent = " --- Scissors";
+      break;
+    case "lizard":
+      computerLizard.classList.add("selected");
+      computerChoiceEl.textContent = " --- Lizard";
+      break;
+    case "spock":
+      computerSpock.classList.add("selected");
+      computerChoiceEl.textContent = " --- Spock";
+      break;
+    default:
+      break;
+  }
+}
+
+// CALL FUNCTIONS TO PROCESS TURN
+function checkResult() {
+  resetSelected();
+  computerRandomChoice();
+  displayComputerChoice();
+}
+
 // PASSING PLAYER SELECTION VALUE AND STYLING ICONS
 function select(playerChoice) {
-  resetSelected();
+  checkResult();
   // ADD "selected" STYLING & playerChoice
   switch (playerChoice) {
     case "rock":
