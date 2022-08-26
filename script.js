@@ -37,6 +37,18 @@ function resetSelected() {
   });
 }
 
+// RESET SCORE & playerChoice/computerChoice
+function resetAll() {
+  playerScoreNumber = 0;
+  computerScoreNumber = 0;
+  playerScoreEl.textContent = playerScoreNumber;
+  computerScoreEl.textContent = computerScoreNumber;
+  playerChoiceEl.textContent = "";
+  computerChoiceEl.textContent = "";
+  resultText.textContent = "";
+  resetSelected();
+}
+
 // RANDOM COMPUTER CHOICE
 function computerRandomChoice() {
   const computerChoiceNumber = Math.random();
@@ -136,3 +148,6 @@ function select(playerChoice) {
       break;
   }
 }
+
+// ON STARTUP, SET INITIAL VALUES
+resetAll();
